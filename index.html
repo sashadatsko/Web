@@ -10,6 +10,13 @@
     <link rel="icon" type="image/x-icon" href="assets/car.png" />
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="css/styles.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+       .contact-form {
+  display: none;
+  margin-top: 10px;
+}
+    </style>
 </head>
 
 <body id="page-top">
@@ -18,13 +25,14 @@
         <div class="container px-4">
             <a class="navbar-brand" href="#page-top"><img id="Logo" src="assets/car.png" alt="Logo"></a>
             <a class="navbar-brand" href="#page-top">ШвидкаПоїздка</a>
+            <button onclick="a()">AAAAAAAAAAAA</button>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
                 aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span
                     class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link" href="#services">Про нас</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#" onclick="showModal()">Особистий кабінет</a></li>
+                    <li class="nav-item"><a class="nav-link" onclick="showModal()">Особистий кабінет</a></li>
                     <li class="nav-item"><a class="nav-link" href="#contact">Підтримка</a></li>
                     <li class="nav-item"><a class="nav-link" href="#contacts">Контакти</a></li>
                 </ul>
@@ -121,26 +129,7 @@
 
         </div>
     </header>
-    <!-- About section-->
-    <!-- <section id="about">
-        <div class="container px-4">
-            <div class="row gx-4 justify-content-center">
-                <div class="col-lg-8">
-                    <h2>About this page</h2>
-                    <p class="lead">This is a great place to talk about your webpage. This template is purposefully
-                        unstyled so you can use it as a boilerplate or starting point for you own landing page designs!
-                        This template features:</p>
-                    <ul>
-                        <li>Clickable nav links that smooth scroll to page sections</li>
-                        <li>Responsive behavior when clicking nav links perfect for a one page website</li>
-                        <li>Bootstrap's scrollspy feature which highlights which section of the page you're on in the
-                            navbar</li>
-                        <li>Minimal custom CSS so you are free to explore your own unique design options</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section> -->
+
     <!-- Services section-->
     <section class="bg-light bg-gradient" id="services">
         <div class="container px-4">
@@ -156,6 +145,7 @@
                         сервіс для наших клієнтів, забезпечуючи швидкість, зручність та надійність в кожній поїздці.</p>
                     <p class="lead">Ми пишаємося тим, що допомагаємо нашим клієнтам здійснювати поїздки на авто без
                         стресу та проблем. Дякуємо, що обрали нас!</p>
+                        <a href="about.html" target="_blank" class="" id="read-more">Детальніше </a>
                 </div>
             </div>
         </div>
@@ -173,6 +163,7 @@
                         інформацію про наші послуги та їх вартість. Ми також готові допомогти вам з вирішенням будь-яких
                         проблем, що виникають під час замовлення послуг нашого сервісу.</p>
                     <p class="lead">Не соромтеся звернутися до наc, ми завжди тут, щоб допомогти вам!</p>
+                    <button class="btn btn-primary btn-light" onclick="showFeedback()">Написати відгук</button>
                 </div>
             </div>
         </div>
@@ -184,6 +175,7 @@
                 <p class="m-0 text-center text-dark">Email: shvydkap@gmail.com<br>Телефон: +123 456 789<br>Пн-Сб:
                     08:00-21:00<br>&copy; 2023</p>
             </div>
+            
         <!-- </footer> -->
     </section>
     <!-- Bootstrap core JS-->
@@ -201,17 +193,17 @@
               </button>
             </div>
             <div class="modal-body">
-              <!-- Add your login form code here -->
               <form>
                 <div class="form-group">
                   <label for="email">Email:</label>
                   <input type="text" class="form-control" id="email" placeholder="Введіть е-пошту" required>
                 </div>
                 <div class="form-group">
-                  <label for="password">Password:</label>
+                  <label for="password">Пароль:</label>
                   <input type="password" class="form-control" id="password" placeholder="Введіть пароль" required>
                 </div>
                 <button type="submit" class="btn btn-primary mt-3" onclick="onLogin()">Увійти</button>
+                <button type="submit" class="btn btn-primary mt-3 btn-warning" onclick="onAdmin()">Увійти як адміністратор</button>
               </form>
             </div>
           </div>
@@ -247,8 +239,17 @@
                 </div>
                 <div class="mb-3">
                     <label for="cargo" class="form-label">Вантаж</label>
-                    <input type="cargo" class="form-control" id="cargo" placeholder="Якщо є вантаж, вкажіть обʼєм">
-                  </div>
+                    <input type="cargo" class="form-control" id="cargo" placeholder="Якщо є вантаж, вкажіть масу в кг." oninput="onInput()">
+                </div>
+                <div id="select" class="mb-3 d-none">
+                    <label for="cargo" class="form-label">Оберіть транспорт</label>
+                    <select id="vList" class="form-select" aria-label="Виберіть елемент">
+                      <option value="Легковий автомобіль">Легковий автомобіль</option>
+                      <option value="Фургон">Фургон</option>
+                      <option value="Вантажівка">Вантажівка</option>
+                      <option value="Тягач з причепом">Тягач з причепом</option>
+                    </select>
+              </div>
                 <div class="mb-3">
                   <label for="date" class="form-label">Дата</label>
                   <input type="date" class="form-control" id="date" required>
@@ -276,13 +277,137 @@
               <div class="row" id="transportation-order-tiles">
                 <!-- Transportation order tiles will be dynamically added here -->
               </div>
-              <button type="button" class="btn btn-primary" id="add-transportation-order-btn" onclick="showModal2(); hideOrders();">Нове замовлення</button> <button type="button" class="btn btn-primary" onclick="onExit()">Вихід</button>
+              <div class="card-footer">
+                <div class="d-flex justify-content-between">
+                  <button type="button" class="btn btn-primary" id="add-transportation-order-btn" onclick="showModal2(); hideOrders();">Нове замовлення</button>
+                  <button type="button" class="btn btn-primary" onclick="onExit()">Вихід</button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
-      <button onclick="showOrders()">Button</button>
+      <!-- Admin modal -->
+      <div class="modal fade" id="admin-modal" tabindex="-1" role="dialog" aria-labelledby="adminModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="adminModalLabel">Панель адміністратора</h5>
+            </div>
+            <div class="modal-body">
+              <div class="row mx-auto">
+                <ul id="userList" class="list-group">
+                </ul>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <!-- <button type="button" class="btn btn-primary" data-dismiss="modal" id="fbBtn">Список відгуків</button> -->
+              <button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" id="fbBtn">
+                Список відгуків
+              </button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="hideAdminPanel()">Закрити</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="onExit()">Вийти</button>
+            </div>
+            <div id="fb" class="form-control" style="display: none;">
+              <ul id="fbList" class="list-group">
+
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+       <!-- Feedback modal -->
+      <div class="modal fade" id="fb-modal" tabindex="-1" role="dialog" aria-labelledby="feedbackModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="feedbackModalLabel">Залиште свій відгук</h5>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="form-group">
+                  <label for="message">Повідомлення:</label>
+                  <textarea class="form-control" id="fmessage" rows="10" placeholder="Напишіть свій відгук" required></textarea>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <div id="ratingStars" class="mx-auto">
+                <span class="star" data-value="1">&#9734;</span>
+                <span class="star" data-value="2">&#9734;</span>
+                <span class="star" data-value="3">&#9734;</span>
+              </div>
+              <button type="submit" class="btn btn-primary mt-3" id="showAlert" onclick="onSendFeedback()">Надіслати</button>
+            </div>
+          </div>
+        </div>
+      </div>
+<script>
+   $(document).ready(function() {
+      $('#userList').on('click', '.delete-btn', function() {
+        $(this).closest('li').remove();
+      });
+    });
+
+    $(document).ready(function() {
+      $('#userList').on('click', '.contact', function() {
+        var contactForm = $(this).siblings('.contact-form');
+        contactForm.slideToggle();
+      });
+    });
+
+    $(document).ready(function() {
+      $('#userList').on('click', '.send', function() {
+        alert("Повідомлення надіслано");
+      });
+    });
+
+    $(document).ready(function() {
+    $("#fbBtn").click(function() {
+      $("#fb").toggle();
+    });
+
+
+    $(document).ready(function() {
+  $(".star").click(function() {
+    var ratingValue = $(this).data("value");
+    highlightStars(ratingValue);
+    onStarClick(ratingValue);
+  });
+
+  function highlightStars(ratingValue) {
+    $(".star").removeClass("active");
+
+    $(".star").each(function() {
+      var starValue = $(this).data("value");
+
+      if (starValue <= ratingValue) {
+        $(this).addClass("active");
+      }
+    });
+  }
+});
+});
+
+function a()
+{
+  fetch('/clicked', {method: 'POST'})
+    .then(function(response) {
+      if(response.ok) {
+        console.log('click was recorded');
+        return;
+      }
+      throw new Error('Request failed.');
+    })
+    .catch(function(error) {
+      console.log(error);
+    });
+}
+
+</script>
+
 </body>
 
 </html>

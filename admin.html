@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Delete List Items with jQuery</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <link href="css/styles.css" rel="stylesheet" />
+  <style>
+    .list-group {
+      margin-bottom: 20px;
+    }
+    rating {
+  display: inline-block;
+}
+
+.rating input {
+  display: none;
+}
+
+.rating label {
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  background-image: url('star-icon.png'); /* Replace with your star icon image */
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.rating input:checked + label {
+  background-image: url('filled-star-icon.png'); /* Replace with your filled star icon image */
+}
+  </style>
+</head>
+<body>
+  <!-- <div class="rating">
+    <input type="radio" id="star1" name="rating" value="1">
+    <label for="star1"></label>
+    <input type="radio" id="star2" name="rating" value="2">
+    <label for="star2"></label>
+    <input type="radio" id="star3" name="rating" value="3">
+    <label for="star3"></label>
+  </div> -->
+
+  <div id="ratingStars">
+    <span class="star" data-value="1">&#9733;</span>
+
+    <span class="star" data-value="2">&#9733;&#9733;</span>
+    <span class="star" data-value="3">&#9733;&#9733;&#9733;</span>
+    
+  </div>
+
+  <script>
+    $(document).ready(function() {
+  $(".star").click(function() {
+    var ratingValue = $(this).data("value");
+    highlightStars(ratingValue);
+  });
+
+  function highlightStars(ratingValue) {
+    $(".star").removeClass("active");
+
+    $(".star").each(function() {
+      var starValue = $(this).data("value");
+
+      if (starValue <= ratingValue) {
+        $(this).addClass("active");
+      }
+    });
+  }
+});
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -11,7 +11,27 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
 
- #menu {
+ .star {
+  color: black;
+  cursor: pointer;
+  font-size: 24px;
+}
+.star.active {
+  color: gold;
+}
+ .userList {
+  display: flex;
+}
+.trucks
+{
+  width: 200px;
+  height: 350px;
+}
+#read-more
+{
+  color:  grey;
+}
+#menu {
   position: fixed;
   top: 0;
   right: -300px;
@@ -26,8 +46,6 @@
 #menu.open {
   right: 0;
 }
-
-
 
 #Logo {
   size: 10px;
